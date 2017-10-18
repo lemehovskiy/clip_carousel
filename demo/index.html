@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Parallax example</title>
+
+    <meta name="description" content="Parallax content">
+    <meta name="keywords" content="parallax content responsive jQuery plugin Greensock Gsap animation">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+<section class="section-intro">
+    <div class="container">
+        <div class="main">
+            <div class="back-img active" data-expand-carousel='{"background_img_url": "imgs/hs_err_pid689.jpg"}' style="background-image: url('imgs/hs_err_pid689.jpg')"></div>
+            <div class="back-img" data-expand-carousel='{"background_img_url": "imgs/pexels-photo-534327.jpg"}' style="background-image: url('imgs/pexels-photo-534327.jpg')"></div>
+            <div class="back-img" data-expand-carousel='{"background_img_url": "imgs/pexels-photo-534351.jpg"}' style="background-image: url('imgs/pexels-photo-534351.jpg')"></div>
+            <div class="back-img" data-expand-carousel='{"background_img_url": "imgs/pexels-photo-539711.jpg"}' style="background-image: url('imgs/pexels-photo-539711.jpg')"></div>
+        </div>
+
+        <div class="thumb">
+            <div>
+                <div class="back-img back-layer current-layer" style="background-image: url('imgs/hs_err_pid689.jpg')">
+                </div>
+            </div>
+            <div>
+                <div class="back-img back-layer current-layer" style="background-image: url('imgs/pexels-photo-534327.jpg')">
+                </div>
+            </div>
+            <div>
+                <div class="back-img back-layer current-layer" style="background-image: url('imgs/pexels-photo-534351.jpg')">
+                </div>
+            </div>
+            <div>
+                <div class="back-img back-layer current-layer" style="background-image: url('imgs/pexels-photo-539711.jpg')">
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+
+<script src="js/jquery-3.2.0.min.js"></script>
+<script src="../build/parallaxContent.js"></script>
+
+
+</body>
+</html>

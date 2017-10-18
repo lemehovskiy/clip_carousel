@@ -1,0 +1,45 @@
+.section-intro {
+
+  .main {
+    width: 400px;
+    height: 400px;
+    position: relative;
+
+    > div {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+
+      &.active {
+        opacity: 1;
+      }
+    }
+  }
+
+  .thumb {
+    > div {
+      width: 100px;
+      height: 100px;
+      position: relative;
+
+      //&.active {
+      //  opacity: 0;
+      //}
+    }
+
+    .back-layer {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+    }
+
+
+  }
+
+
+}
