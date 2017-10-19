@@ -10,41 +10,96 @@ var Carousel_core = function () {
 
         var self = this;
 
-        self.slides = [];
-
         var $slider = $(options.selector);
         var $slides = $slider.find('div');
 
-        var slider_counter = 0;
+        self.slides = self.create_slides_arr($slides);
 
-        $slides.each(function (slide) {
+        self.thumbs = self.create_thumbs_arr();
 
-            // console.log($(this).data());
-            self.slides.push({
-                element: $(this),
-                element_thumb: $('.thumb >div:eq(' + slider_counter++ + ')'),
-                slide_settings: $(this).data('expandCarousel')
+        // self.update_thumbs($slides);
 
-            });
+        // console.log(self.thumbs);
 
-            console.log(slider_counter);
-        });
-
-        console.log(self.slides);
 
         self.current_index = 0;
+        self.prev_index = null;
         self.play_interval;
-        self.interval = 2;
+        self.interval = 4;
 
         self.slides_count = self.slides.length;
 
         if (options.pagination) {
             self.pagination(options.pagination);
         }
+
+        self.update_thumbs();
+
         self.play();
     }
 
     _createClass(Carousel_core, [{
+        key: 'create_thumbs_arr',
+        value: function create_thumbs_arr() {
+            $('.thumb >div:eq(0)').remove();
+
+            var thumb_arr = [];
+
+            $('.thumb >div').each(function () {
+
+                thumb_arr.push({
+                    element: $(this)
+                });
+            });
+
+            return thumb_arr;
+        }
+    }, {
+        key: 'create_slides_arr',
+        value: function create_slides_arr($slides) {
+
+            var slider_counter = 0;
+
+            var slides = [];
+
+            $slides.each(function (slide) {
+
+                // console.log($(this).data());
+                slides.push({
+                    element: $(this),
+                    // element_thumb: $('.thumb >div:eq('+ slider_counter  +')'),
+                    element_thumb_content: $('.thumb >div:eq(' + slider_counter + ')>div'),
+                    slide_settings: $(this).data('expandCarousel')
+
+                });
+
+                slider_counter++;
+            });
+
+            return slides;
+        }
+    }, {
+        key: 'update_thumbs',
+        value: function update_thumbs() {
+
+            var self = this;
+
+            var slides_counter = 0;
+            var thumb_counter = 0;
+
+            self.slides.forEach(function (slide) {
+
+                if (slides_counter != self.current_index) {
+
+                    self.thumbs[thumb_counter++].index = slides_counter;
+                }
+
+                slides_counter++;
+            });
+
+            console.log(self.thumbs);
+        }
+    }, {
         key: 'pagination',
         value: function pagination(pagination_el) {
 
@@ -110,6 +165,8 @@ var Carousel_core = function () {
 
             var self = this;
 
+            self.prev_index = self.current_index;
+
             if (direction == 'forward') {
 
                 if (self.current_index == self.slides.length - 1) {
@@ -125,6 +182,8 @@ var Carousel_core = function () {
                 }
             }
 
+            $('#current-index').html(self.current_index);
+
             self.render();
         }
     }, {
@@ -139,11 +198,27 @@ var Carousel_core = function () {
 
             self.slides[self.current_index].element.addClass('active');
 
-            self.slides.forEach(function (item) {
-                item.element_thumb.removeClass('active');
-            });
+            // $('.thumb div[data-index="' + self.current_index + '"]').addClass('asdfasd');
 
-            self.slides[self.current_index].element_thumb.addClass('active');
+            // console.log(self.prev_index);
+
+            // self.thumbs[self.current_index].html( self.slides[self.prev_index].element_thumb_content);
+
+            // $('.thumb div[data-index=' + self.prev_index +']').addClass('asdf');
+
+            for (var i = 0; i < self.thumbs.length; i++) {}
+
+            self.update_thumbs();
+
+            // self.slides.forEach(function(item){
+            //     item.element_thumb.removeClass('active');
+            // });
+
+
+            // self.slides[self.current_index].element_thumb.addClass('active');
+
+            // self.slides[self.current_index].element_thumb.append(self.slides[1].element_thumb.html());
+
 
             // $('.main div').removeClass('active');
 
