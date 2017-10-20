@@ -26,7 +26,7 @@ var Carousel_core = function () {
         self.next_index = null;
         self.prev_index = null;
         self.play_interval;
-        self.interval = 0;
+        self.interval = 1;
 
         self.skip_slide = false;
 
@@ -102,7 +102,7 @@ var Carousel_core = function () {
 
             // console.log(self.thumbs);
 
-            debugger;
+            // debugger;
         }
     }, {
         key: 'pagination',
@@ -191,11 +191,12 @@ var Carousel_core = function () {
                 }
             }
 
-            debugger;
+            // debugger;
+
 
             self.render();
 
-            self.update_thumbs();
+            // self.update_thumbs();
         }
     }, {
         key: 'render',
@@ -234,6 +235,8 @@ var Carousel_core = function () {
 
                     thumb.element.addClass('test');
                     thumb.element.html(self.slides[self.current_index].element_thumb_content);
+
+                    thumb.index = self.current_index;
                 }
             });
 

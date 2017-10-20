@@ -23,7 +23,7 @@ class Carousel_core {
         self.next_index = null;
         self.prev_index = null;
         self.play_interval;
-        self.interval = 0;
+        self.interval = 1;
 
         self.skip_slide = false;
 
@@ -99,7 +99,7 @@ class Carousel_core {
 
         // console.log(self.thumbs);
 
-        debugger;
+        // debugger;
     }
 
     pagination(pagination_el) {
@@ -189,12 +189,12 @@ class Carousel_core {
             }
         }
 
-        debugger;
+        // debugger;
 
 
         self.render();
 
-        self.update_thumbs();
+        // self.update_thumbs();
 
     }
 
@@ -237,6 +237,8 @@ class Carousel_core {
 
                 thumb.element.addClass('test');
                 thumb.element.html(self.slides[self.current_index].element_thumb_content)
+
+                thumb.index = self.current_index;
 
             }
         })
