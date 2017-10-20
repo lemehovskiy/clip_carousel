@@ -14,7 +14,6 @@ class Carousel_core {
         self.thumbs = self.create_thumbs_arr();
 
 
-
         // self.update_thumbs($slides);
 
         // console.log(self.thumbs);
@@ -33,37 +32,37 @@ class Carousel_core {
 
         self.update_thumbs();
 
-        self.play();
+        // self.play();
     }
 
-    create_thumbs_arr(){
+    create_thumbs_arr() {
         $('.thumb >div:eq(0)').remove();
 
         let thumb_arr = [];
 
-        $('.thumb >div').each(function(){
+        $('.thumb >div').each(function () {
 
             thumb_arr.push({
-               element: $(this)
+                element: $(this)
             });
         })
 
         return thumb_arr;
     }
 
-    create_slides_arr($slides){
+    create_slides_arr($slides) {
 
         let slider_counter = 0;
 
         let slides = [];
 
-        $slides.each(function(slide){
+        $slides.each(function (slide) {
 
             // console.log($(this).data());
             slides.push({
                 element: $(this),
                 // element_thumb: $('.thumb >div:eq('+ slider_counter  +')'),
-                element_thumb_content: $('.thumb >div:eq('+ slider_counter  +')>div'),
+                element_thumb_content: $('.thumb >div:eq(' + slider_counter + ')>div'),
                 slide_settings: $(this).data('expandCarousel')
 
             });
@@ -75,14 +74,14 @@ class Carousel_core {
         return slides;
     }
 
-    update_thumbs(){
+    update_thumbs() {
 
         let self = this;
 
         let slides_counter = 0;
         let thumb_counter = 0;
 
-        self.slides.forEach(function(slide){
+        self.slides.forEach(function (slide) {
 
             if (slides_counter != self.current_index) {
 
@@ -93,7 +92,7 @@ class Carousel_core {
             slides_counter++;
         });
 
-        console.log(self.thumbs);
+        // console.log(self.thumbs);
     }
 
     pagination(pagination_el) {
@@ -103,11 +102,11 @@ class Carousel_core {
 
         let $pagination_el = $(pagination_el);
 
-        for (let i = 0; i <  self.slides_count; i++) {
-            $pagination_el.append('<span>'+ counter++ +'</span>')
+        for (let i = 0; i < self.slides_count; i++) {
+            $pagination_el.append('<span>' + counter++ + '</span>')
         }
 
-        $pagination_el.on('click', 'span', function(){
+        $pagination_el.on('click', 'span', function () {
             self.go_to_index($(this).index())
         });
     }
@@ -182,15 +181,19 @@ class Carousel_core {
 
         $('#current-index').html(self.current_index);
 
+        $('#prev-index').html(self.prev_index);
+
         self.render();
+
+        self.update_thumbs();
 
     }
 
-    render(){
+    render() {
 
         let self = this;
 
-        self.slides.forEach(function(item){
+        self.slides.forEach(function (item) {
             item.element.removeClass('active');
         });
 
@@ -205,12 +208,32 @@ class Carousel_core {
 
         // $('.thumb div[data-index=' + self.prev_index +']').addClass('asdf');
 
-        for (let i = 0; i < self.thumbs.length; i++) {
+        self.thumbs.forEach(function (thumb) {
+            thumb.element.removeClass('test');
+        })
 
-        }
+
+        console.log(self.current_index);
+        console.log(self.thumbs);
+
+        console.log('current: '  + self.current_index);
+
+        self.thumbs.forEach(function (thumb) {
+
+            console.log(thumb.index);
+
+            if (thumb.index == self.current_index) {
+
+                thumb.element.addClass('test');
+                thumb.element.html(self.slides[self.prev_index].element_thumb_content)
+
+            }
+        })
 
 
-        self.update_thumbs();
+        // console.log(self.slides[self.prev_index].element_thumb_content);
+
+
 
 
         // self.slides.forEach(function(item){
@@ -221,8 +244,6 @@ class Carousel_core {
         // self.slides[self.current_index].element_thumb.addClass('active');
 
         // self.slides[self.current_index].element_thumb.append(self.slides[1].element_thumb.html());
-
-
 
 
         // $('.main div').removeClass('active');
@@ -242,3 +263,12 @@ let carousel_core = new Carousel_core({
     selector: '.main',
     pagination: '.pagination'
 });
+
+
+$('#next-slide').on('click', function(){
+    carousel_core.go_to('forward');
+})
+
+$('#prev-slide').on('click', function(){
+    carousel_core.go_to('backward');
+})
