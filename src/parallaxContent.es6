@@ -23,7 +23,7 @@ class Carousel_core {
         self.next_index = null;
         self.prev_index = null;
         self.play_interval;
-        self.interval = 1;
+        self.interval = 2;
 
         self.skip_slide = false;
 
@@ -33,7 +33,7 @@ class Carousel_core {
             self.pagination(options.pagination);
         }
 
-        self.update_thumbs();
+        self.init_thumbs_index();
 
         self.play();
     }
@@ -78,7 +78,7 @@ class Carousel_core {
     }
 
 
-    update_thumbs() {
+    init_thumbs_index() {
 
         let self = this;
 
@@ -95,11 +95,6 @@ class Carousel_core {
 
             slides_counter++;
         });
-
-
-        // console.log(self.thumbs);
-
-        // debugger;
     }
 
     pagination(pagination_el) {
@@ -162,10 +157,6 @@ class Carousel_core {
 
         let self = this;
 
-        // $('#current-index').html(self.next_index);
-
-        // $('#prev-index').html(self.prev_index);
-
         self.prev_index = self.next_index;
 
         if (direction == 'forward') {
@@ -189,12 +180,8 @@ class Carousel_core {
             }
         }
 
-        // debugger;
-
 
         self.render();
-
-        // self.update_thumbs();
 
     }
 
@@ -203,74 +190,46 @@ class Carousel_core {
         let self = this;
 
 
+        self.slide_animation();
+        self.thumb_animation();
+
+        self.current_index = self.next_index;
+
+        self.next_index = null;
+
+    }
+
+    slide_animation(){
+        let self = this;
 
         self.slides.forEach(function (item) {
             item.element.removeClass('active');
         });
 
         self.slides[self.next_index].element.addClass('active');
+    }
 
+    thumb_animation(){
 
-        // $('.thumb div[data-index="' + self.next_index + '"]').addClass('asdfasd');
-
-        // console.log(self.prev_index);
-
-        // self.thumbs[self.next_index].html( self.slides[self.prev_index].element_thumb_content);
-
-        // $('.thumb div[data-index=' + self.prev_index +']').addClass('asdf');
+        let self = this;
 
         self.thumbs.forEach(function (thumb) {
             thumb.element.removeClass('test');
         })
 
 
-        // console.log(self.next_index);
-        // console.log(self.thumbs);
-
-        console.log('next_slide: '  + self.next_index);
-
         self.thumbs.forEach(function (thumb) {
-
-            console.log(thumb.index);
 
             if (thumb.index == self.next_index) {
 
                 thumb.element.addClass('test');
-                thumb.element.html(self.slides[self.current_index].element_thumb_content)
+                thumb.element.html(self.slides[self.current_index].element_thumb_content);
 
                 thumb.index = self.current_index;
 
             }
         })
 
-
-        self.current_index = self.next_index;
-
-        self.next_index = null;
-
-        // console.log(self.slides[self.prev_index].element_thumb_content);
-
-
-
-
-        // self.slides.forEach(function(item){
-        //     item.element_thumb.removeClass('active');
-        // });
-
-
-        // self.slides[self.next_index].element_thumb.addClass('active');
-
-        // self.slides[self.next_index].element_thumb.append(self.slides[1].element_thumb.html());
-
-
-        // $('.main div').removeClass('active');
-
-        // $('.main div:eq(' + self.next_index + ')').addClass('active');
-
-
-        // $('.thumb >div').removeClass('active');
-        //
-        // $('.thumb >div:eq(' + self.next_index + ')').addClass('active');
     }
 
 }
