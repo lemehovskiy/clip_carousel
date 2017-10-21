@@ -21,12 +21,24 @@ var Carousel_core = function () {
 
         // console.log(self.thumbs);
 
+        self.slider_width = 0;
+        self.slider_height = 0;
+
+        self.thumb_width = 0;
+        self.thumb_width = 0;
 
         self.current_index = 0;
         self.next_index = null;
         self.prev_index = null;
         self.play_interval;
-        self.interval = 2;
+
+        self.thumb_animation_tl = new TimelineMax();
+        self.slider_animation_tl = new TimelineMax();
+
+        self.autoplay_speed = 2;
+        self.animate_duration = 3;
+
+        self.interval = self.autoplay_speed + self.animate_duration;
 
         self.skip_slide = false;
 
@@ -38,10 +50,41 @@ var Carousel_core = function () {
 
         self.init_thumbs_index();
 
-        self.play();
+        self.get_slide_size();
+        self.get_thumb_size();
+
+        // self.play();
     }
 
     _createClass(Carousel_core, [{
+        key: 'get_slide_size',
+        value: function get_slide_size() {
+
+            var self = this;
+
+            self.slider_width = $('.main >div').outerWidth();
+            self.slider_height = $('.main >div').outerHeight();
+
+            $(window).on('resize', function () {
+                self.slider_width = $('.main >div').outerWidth();
+                self.slider_height = $('.main >div').outerHeight();
+            });
+        }
+    }, {
+        key: 'get_thumb_size',
+        value: function get_thumb_size() {
+
+            var self = this;
+
+            self.thumb_width = $('.thumb >div').outerWidth();
+            self.thumb_height = $('.thumb >div').outerHeight();
+
+            $(window).on('resize', function () {
+                self.thumb_width = $('.thumb >div').outerWidth();
+                self.thumb_height = $('.thumb >div').outerHeight();
+            });
+        }
+    }, {
         key: 'create_thumbs_arr',
         value: function create_thumbs_arr() {
             $('.thumb >div:eq(0)').remove();
@@ -191,7 +234,7 @@ var Carousel_core = function () {
 
             var self = this;
 
-            self.slide_animation();
+            self.slider_animation();
             self.thumb_animation();
 
             self.current_index = self.next_index;
@@ -199,15 +242,23 @@ var Carousel_core = function () {
             self.next_index = null;
         }
     }, {
-        key: 'slide_animation',
-        value: function slide_animation() {
+        key: 'slider_animation',
+        value: function slider_animation() {
             var self = this;
 
-            self.slides.forEach(function (item) {
-                item.element.removeClass('active');
-            });
+            if (self.slider_animation_tl.isActive() === true) {
+                self.slider_animation_tl.progress(1);
+            }
 
-            self.slides[self.next_index].element.addClass('active');
+            self.slider_animation_tl.set(self.slides[self.next_index].element, { className: '+=next' });
+
+            self.slider_animation_tl.fromTo(self.slides[self.current_index].element, 3, { clip: 'rect(0, ' + self.slider_width + 'px, ' + self.slider_height + 'px, 0px)' }, { clip: 'rect(0, 0px,' + self.slider_height + 'px, 0px)' });
+            self.slider_animation_tl.set(self.slides[self.current_index].element, { className: '-=active' });
+
+            self.slider_animation_tl.set(self.slides[self.current_index].element, { clip: 'rect(0, ' + self.slider_width + 'px, ' + self.slider_height + 'px, 0px)' });
+
+            self.slider_animation_tl.set(self.slides[self.next_index].element, { className: '-=next' });
+            self.slider_animation_tl.set(self.slides[self.next_index].element, { className: '+=active' });
         }
     }, {
         key: 'thumb_animation',
@@ -216,15 +267,27 @@ var Carousel_core = function () {
             var self = this;
 
             self.thumbs.forEach(function (thumb) {
-                thumb.element.removeClass('test');
-            });
-
-            self.thumbs.forEach(function (thumb) {
 
                 if (thumb.index == self.next_index) {
 
-                    thumb.element.addClass('test');
-                    thumb.element.html(self.slides[self.current_index].element_thumb_content);
+                    if (self.thumb_animation_tl.isActive() === true) {
+                        self.thumb_animation_tl.progress(1);
+                    }
+
+                    thumb.element.append(self.slides[self.current_index].element_thumb_content);
+
+                    var next_thumb = $(thumb.element).find('div:eq(1)');
+                    var current_thumb = $(thumb.element).find('div:eq(0)');
+
+                    self.thumb_animation_tl.set(next_thumb, { className: '+=next' });
+
+                    self.thumb_animation_tl.fromTo(current_thumb, 3, { clip: 'rect(0, ' + self.thumb_width + 'px, ' + self.thumb_height + 'px, 0px)' }, { clip: 'rect(0, 0px,' + self.thumb_height + 'px, 0px)' });
+
+                    self.thumb_animation_tl.set(current_thumb, { className: '-=active' });
+                    self.thumb_animation_tl.set(next_thumb, { className: '-=next' });
+                    self.thumb_animation_tl.set(next_thumb, { className: '+=active' });
+
+                    self.thumb_animation_tl.set(current_thumb, { clip: 'rect(0, ' + self.thumb_width + 'px, ' + self.thumb_height + 'px, 0px)' });
 
                     thumb.index = self.current_index;
                 }
