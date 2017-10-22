@@ -1,4 +1,4 @@
-class Carousel_core {
+class ClipCarousel {
 
     constructor(options) {
 
@@ -346,16 +346,16 @@ class Carousel_core {
     }
 }
 
-let carousel_core = new Carousel_core({
+let photo_slider = new ClipCarousel({
     slider_selector: '.photo-slider',
     thumbs_selector: '.photo-slider-thumb'
 });
 
 
 $('#slide-next').on('click', function(){
-    carousel_core.go_to('forward');
+    photo_slider.go_to('forward');
 })
 
 $('#slide-prev').on('click', function(){
-    carousel_core.go_to('backward');
+    photo_slider.go_to('backward');
 })

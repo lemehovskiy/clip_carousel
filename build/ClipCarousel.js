@@ -4,9 +4,9 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var Carousel_core = function () {
-    function Carousel_core(options) {
-        _classCallCheck(this, Carousel_core);
+var ClipCarousel = function () {
+    function ClipCarousel(options) {
+        _classCallCheck(this, ClipCarousel);
 
         var self = this;
 
@@ -59,7 +59,7 @@ var Carousel_core = function () {
         }
     }
 
-    _createClass(Carousel_core, [{
+    _createClass(ClipCarousel, [{
         key: 'init_pagination_thumbs',
         value: function init_pagination_thumbs() {
 
@@ -326,18 +326,18 @@ var Carousel_core = function () {
         }
     }]);
 
-    return Carousel_core;
+    return ClipCarousel;
 }();
 
-var carousel_core = new Carousel_core({
+var photo_slider = new ClipCarousel({
     slider_selector: '.photo-slider',
     thumbs_selector: '.photo-slider-thumb'
 });
 
 $('#slide-next').on('click', function () {
-    carousel_core.go_to('forward');
+    photo_slider.go_to('forward');
 });
 
 $('#slide-prev').on('click', function () {
-    carousel_core.go_to('backward');
+    photo_slider.go_to('backward');
 });

@@ -40,7 +40,7 @@ gulp.task('styles', function () {
 
 gulp.task('scripts', function() {
     return streamqueue({ objectMode: true },
-        gulp.src('./src/parallaxContent.es6')
+        gulp.src('./src/ClipCarousel.es6')
     )
 
         .pipe(plumber({
@@ -64,5 +64,5 @@ gulp.task('scripts', function() {
 // configure which files to watch and what tasks to use on file changes
 gulp.task('watch', ['styles', 'scripts'], function() {
     gulp.watch('demo/sass/**/*.scss', ['styles']);
-    gulp.watch('src/parallaxContent.es6', ['scripts']);
+    gulp.watch('src/ClipCarousel.es6', ['scripts']);
 });

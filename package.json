@@ -1,8 +1,8 @@
 {
-  "name": "parallax_content",
-  "version": "1.0.5",
-  "description": "parallax content",
-  "main": "build/parallaxContent.js",
+  "name": "clip_carousel",
+  "version": "1.0.0",
+  "description": "clip carousel",
+  "main": "build/ClipCarousel.js",
   "dependencies": {
     "gsap": "^1.20.2",
     "jquery": ">=1.7"
@@ -29,16 +29,16 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "parallax",
+    "clip",
     "gsap",
-    "tweenlite",
+    "tweenmax",
     "greensock",
     "jquery",
-    "parallax scroll"
+    "carousel"
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/lemehovskiy/parallaxContent"
+    "url": "https://github.com/lemehovskiy/clipCarousel"
   },
   "author": "lemehovskiy",
   "license": "ISC"
