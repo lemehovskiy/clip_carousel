@@ -34,7 +34,7 @@ class Carousel_core {
 
 
         self.autoplay_speed = 2;
-        self.animate_duration = 3;
+        self.animate_duration = 0.5;
 
         self.interval = self.autoplay_speed + self.animate_duration;
 
@@ -262,7 +262,7 @@ class Carousel_core {
 
         self.slider_animation_tl.set(self.slides[self.next_index].element, {className:'+=next'})
 
-        self.slider_animation_tl.fromTo(self.slides[self.current_index].element, 3, {clip: 'rect(0, ' + self.slider_width + 'px, ' + self.slider_height + 'px, 0px)'}, {clip: 'rect(0, 0px,' + self.slider_height + 'px, 0px)'})
+        self.slider_animation_tl.fromTo(self.slides[self.current_index].element, self.animate_duration, {clip: 'rect(0, ' + self.slider_width + 'px, ' + self.slider_height + 'px, 0px)'}, {clip: 'rect(0, 0px,' + self.slider_height + 'px, 0px)'})
         self.slider_animation_tl.set(self.slides[self.current_index].element, {className:'-=active'})
 
         self.slider_animation_tl.set(self.slides[self.current_index].element, {clip: 'rect(0, ' + self.slider_width + 'px, ' + self.slider_height + 'px, 0px)'})
@@ -296,7 +296,7 @@ class Carousel_core {
 
                 self.thumb_animation_tl.set(next_thumb, {className:'+=next'})
 
-                self.thumb_animation_tl.fromTo(current_thumb, 3, {clip: 'rect(0, ' + self.thumb_width + 'px, ' + self.thumb_height + 'px, 0px)'}, {clip: 'rect(0, 0px,' + self.thumb_height + 'px, 0px)'})
+                self.thumb_animation_tl.fromTo(current_thumb, self.animate_duration, {clip: 'rect(0, ' + self.thumb_width + 'px, ' + self.thumb_height + 'px, 0px)'}, {clip: 'rect(0, 0px,' + self.thumb_height + 'px, 0px)'})
 
                 self.thumb_animation_tl.set(current_thumb, {className:'-=active'})
                 self.thumb_animation_tl.set(next_thumb, {className:'-=next'})

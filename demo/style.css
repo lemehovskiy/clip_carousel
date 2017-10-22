@@ -85,20 +85,22 @@ section {
       z-index: 2;
       opacity: 1; }
 
-.section-intro .thumb > div {
-  width: 100px;
-  height: 100px;
-  position: relative;
-  z-index: 2; }
-
-.section-intro .thumb .back-layer {
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 2; }
-  .section-intro .thumb .back-layer.next {
-    z-index: 1; }
+.section-intro .thumb {
+  display: -ms-flexbox;
+  display: flex; }
+  .section-intro .thumb > div {
+    width: 100px;
+    height: 100px;
+    position: relative;
+    z-index: 2; }
+    .section-intro .thumb > div > div {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2; }
+      .section-intro .thumb > div > div.next {
+        z-index: 1; }
 
 /*# sourceMappingURL=style.css.map */
