@@ -2,7 +2,7 @@
   "name": "clip_carousel",
   "version": "1.0.0",
   "description": "clip carousel",
-  "main": "build/ClipCarousel.js",
+  "main": "build/clip_carousel.es6",
   "dependencies": {
     "gsap": "^1.20.2",
     "jquery": ">=1.7"
