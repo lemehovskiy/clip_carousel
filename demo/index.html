@@ -3,11 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!--<title>Parallax example</title>-->
 
-    <!--<meta name="description" content="Parallax content">-->
-    <!--<meta name="keywords" content="parallax content responsive jQuery plugin Greensock Gsap animation">-->
+    <title>Parallax example</title>
 
+    <meta name="description" content="Parallax content">
+    <meta name="keywords" content="parallax content responsive jQuery plugin Greensock Gsap animation">
+
+    <link rel="stylesheet" href="fontello/css/fontello.css">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -16,30 +18,77 @@
 
 <section class="section-intro">
     <div class="container">
-        <div class="main">
-            <div class="back-img active" style="background-image: url('imgs/hs_err_pid689.jpg')"></div>
-            <div class="back-img" style="background-image: url('imgs/pexels-photo-534327.jpg')"></div>
-            <div class="back-img" style="background-image: url('imgs/pexels-photo-534351.jpg')"></div>
-            <div class="back-img" style="background-image: url('imgs/pexels-photo-539711.jpg')"></div>
+        <div class="photo-slider-wrap">
+            <div class="photo-slider">
+                <div class="back-img active" style="background-image: url('imgs/hs_err_pid689.jpg')">
+                    <div class="caption">
+                        Lorem ipsum 1
+                    </div>
+                </div>
+                <div class="back-img" style="background-image: url('imgs/pexels-photo-534327.jpg')">
+                    <div class="caption">
+                        Lorem ipsum 2
+                    </div>
+                </div>
+                <div class="back-img" style="background-image: url('imgs/pexels-photo-534351.jpg')">
+                    <div class="caption">
+                        Lorem ipsum 3
+                    </div>
+                </div>
+                <div class="back-img" style="background-image: url('imgs/pexels-photo-539711.jpg')">
+                    <div class="caption">
+                        Lorem ipsum 4
+                    </div>
+                </div>
+                <div class="back-img" style="background-image: url('imgs/mountains-1645078_1280.jpg')">
+                    <div class="caption">
+                        Lorem ipsum 5
+                    </div>
+                </div>
+            </div>
+
+            <div class="slider-arrow slide-next" id="slide-next">
+                <i class="icon icon-right-open-big"></i>
+            </div>
+            <div class="slider-arrow slide-prev" id="slide-prev">
+                <i class="icon icon-left-open-big"></i>
+            </div>
         </div>
 
-        <div class="thumb">
+        <div class="photo-slider-thumb">
             <div>
                 <div class="back-img" style="background-image: url('imgs/hs_err_pid689.jpg')">
-
+                    <div class="caption">
+                        Lorem 1
+                    </div>
                 </div>
             </div>
             <div>
                 <div class="back-img" style="background-image: url('imgs/pexels-photo-534327.jpg')">
-
+                    <div class="caption">
+                        Lorem 2
+                    </div>
                 </div>
             </div>
             <div>
                 <div class="back-img" style="background-image: url('imgs/pexels-photo-534351.jpg')">
+                    <div class="caption">
+                        Lorem 3
+                    </div>
                 </div>
             </div>
             <div>
                 <div class="back-img" style="background-image: url('imgs/pexels-photo-539711.jpg')">
+                    <div class="caption">
+                        Lorem 4
+                    </div>
+                </div>
+            </div>
+            <div>
+                <div class="back-img" style="background-image: url('imgs/mountains-1645078_1280.jpg')">
+                    <div class="caption">
+                        Lorem 5
+                    </div>
                 </div>
             </div>
         </div>
@@ -48,17 +97,9 @@
 </section>
 
 
-
-<div>
-    <div id="next-slide">Next</div>
-    <div id="prev-slide">Prev</div>
-</div>
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
 <script src="js/jquery-3.2.0.min.js"></script>
 <script src="../build/parallaxContent.js"></script>
-
 
 
 </body>
